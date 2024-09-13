@@ -50,10 +50,11 @@ Ingresa en la carpetas por separado CytBackend, CytFrontend e instala las depend
 
 ### 3. Configura tu entorno
 En la carpeta CytBackend deberas crear un archivo .env en la raiz dobde deberas definir estas 3 variables
+```bash
 PORT=
 MONGODB_URI=
 JWT_SECRET=
-
+```
 En la carpeta CytFrontend dentro de la carpeta API deberás colocar la url de tu endopoint del backend
 
 ### 5. Listo! ahora lo puedes iniciar correctamente!
