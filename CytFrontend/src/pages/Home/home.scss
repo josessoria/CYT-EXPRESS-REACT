@@ -17,5 +17,12 @@
 
 .cytext {
   font-weight: 500;
-  font-size: clamp(10px,5vh, 400px);
+  font-size: clamp(10px, 5vh, 400px);
+}
+
+@media (max-width: 600px) {
+  .cytext {
+    font-weight: 500;
+    font-size: clamp(10px, 3vh, 400px);
+  }
 }
