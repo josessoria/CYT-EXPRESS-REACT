@@ -4,7 +4,7 @@ import axios from "../../api/axios";
 import { User, UserContext, UserContextType } from "../../context/UserProvider";
 
 const UserMiddleware = () => {
-  const { user, setUser }: UserContextType = useContext(UserContext);
+  const { setUser }: UserContextType = useContext(UserContext);
 
   useEffect(() => {
     const validateToken = async () => {

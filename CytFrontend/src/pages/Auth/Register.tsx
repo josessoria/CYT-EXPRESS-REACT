@@ -6,15 +6,13 @@ import { AuthFooter } from "../../components/AuthFooter";
 import { AuthHeader } from "../../components/AuthHeader";
 import { AuthSubmit } from "../../components/AuthSubmit";
 import { ContinueWithGoogle } from "../../components/ContinueWithGoogle";
-import { useNavigate } from "react-router-dom";
+
 import { AuthContext } from "../../context/AuthContext";
 import toast from "react-hot-toast";
 
 import "./Auth.scss";
 
 const Register = () => {
-  const navigate = useNavigate();
-
   const [data, setData] = React.useState({
     email: "",
     username: "",
@@ -131,7 +129,7 @@ const Register = () => {
         await authContext.register(data);
         window.location.reload();
       }
-    } catch (error:any) {
+    } catch (error: any) {
       console.log(error);
       toast.error(String(error.response.data.message));
     }
