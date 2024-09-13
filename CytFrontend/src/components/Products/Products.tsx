@@ -24,13 +24,18 @@ const Products: React.FC = () => {
     [key: string]: Product[];
   }>({});
 
+  const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        setLoading(true); // Start loading
         const response = await axios.get<Product[]>("/api/Products");
         setProducts(response.data);
       } catch (error) {
         console.error("Error al obtener los productos:", error);
+      } finally {
+        setLoading(false); // End loading
       }
     };
 
@@ -60,23 +65,42 @@ const Products: React.FC = () => {
   const noProducts = Object.keys(groupedProducts).length === 0;
   return (
     <div className="w-full p-4">
-      {noProducts ? (
-        <div className="  text-center text-xl font-bold text-gray-700">
+      {loading && (
+        <div>
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold mb-4">Loading...</h2>
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+              <div className="loader" />
+              <div className="loader" />
+              <div className="loader" />
+              <div className="loader" />
+              <div className="loader" />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {!loading && noProducts && (
+        <div className="text-center text-xl font-bold text-gray-700">
           No hay productos disponibles.
         </div>
-      ) : (
+      )}
+
+      {/* Principal Content */}
+      {!loading &&
+        !noProducts &&
         Object.keys(groupedProducts).map((category) => (
-          <div key={category} className="mb-8 ">
+          <div key={category} className="mb-8">
             <h2 className="text-2xl font-bold mb-4">{category}</h2>
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {groupedProducts[category].map((product) => (
                 <div
                   key={product._id}
-                  className="bg-white flex flex-col p-6 rounded-lg shadow-lg "
+                  className="bg-white flex flex-col p-2 rounded-2xl shadow-lg"
                 >
-                  <div className="imagenfoto w-full h-[200px] flex justify-center relative items-center bg-gray-100 ">
-                    <img src={Logo} alt="" />
-                    <div className="w-full absolute flex justify-end top-[-25px] gap-4 ">
+                  <div className="imagenfoto w-full h-[200px] flex justify-center relative items-center bg-gray-100">
+                    <img src={Logo} className="rounded-2xl" alt="" />
+                    <div className="w-full absolute flex justify-end top-[-25px] gap-4">
                       {user?.role === "admin" && (
                         <FaTrash
                           className="text-red-600 text-[20px] cursor-pointer"
@@ -85,21 +109,30 @@ const Products: React.FC = () => {
                       )}
                     </div>
                   </div>
-                  <h3 className="text-xl text-center font-bold mb-2 text-[25px] mt-[10px] ">
-                    {product.name}
-                  </h3>
-                  <p className="text-gray-700 mb-2 text-end text-[20px] ">
-                    ${product.price.toFixed(2)}
-                  </p>
-                  <p className="text-gray-600 text-justify text-[20px] ">
-                    {product.description}
-                  </p>
+                  <div className="itemscarta flex flex-col gap-4">
+                    <h3 className="text-xl text-start font-medium  text-[25px] mt-[10px]">
+                      {product.name}
+                    </h3>
+                    <p className="font-[700] leading-none   text-[#804ffa] text-start text-[30px]">
+                      {product.price.toFixed(2)}$
+                    </p>
+                    <p className="text-gray-600 text-justify text-[15px]">
+                      {product.description}
+                    </p>
+                    <div className="addtocart w-full gap-4 flex">
+                      <div className=" w-1/2 h-[40px] flex text-[#804ffa] justify-center  rounded-2xl cursor-pointer items-center border border-[#804ffa]  ">
+                        Comprar
+                      </div>
+                      <div className=" w-1/2 h-[40px] flex text-white justify-center  rounded-2xl cursor-pointer items-center bg-[#804ffa] ">
+                       Añadir a carrito
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
-        ))
-      )}
+        ))}
     </div>
   );
 };

@@ -3,11 +3,12 @@ import { Navigate, Outlet } from "react-router-dom";
 import axios from "../../api/axios";
 import { UserContext, UserContextType } from "../../context/UserProvider";
 import { CircularProgress } from "@nextui-org/react";
+import "./AdminMiddleware.scss";
 
 const AdminMiddleware = () => {
   const [isValidAdmin, setIsValidAdmin] = React.useState<boolean | null>(null);
 
-  const {  setUser }: UserContextType = useContext(UserContext);
+  const { setUser }: UserContextType = useContext(UserContext);
 
   useEffect(() => {
     const checkAdminRole = async () => {
@@ -35,7 +36,11 @@ const AdminMiddleware = () => {
   }, []);
 
   if (isValidAdmin === null) {
-    return <CircularProgress size="lg" aria-label="Loading..." />;
+    return (
+      <div className="w-full h-full top-[-0px] z-50 absolute bg-white flex justify-center items-center ">
+        <span className="loaderperson"></span>
+      </div>
+    );
   }
 
   if (!isValidAdmin) {

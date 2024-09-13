@@ -1,5 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @media (max-width: 650px) {
   .homesection {
     margin-top: 30px;
   }
+}
+
+.cytcomunicaciones {
+  background: linear-gradient(135deg, #59a6ff, #6315ff);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  height: clamp(200px, 30vh, 400px);
+}
+
+.cytext {
+  font-weight: 500;
+  font-size: clamp(20px, 8vh, 400px);
 }

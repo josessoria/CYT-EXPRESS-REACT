@@ -45,7 +45,7 @@ const TabActions = () => {
 
   return (
     <>
-      <div className="navchica w-full flex flex-wrap z-10 gap-5 py-[10px] bg-[#0F2A3D] justify-center fixed border-b-1 px-5">
+      <div className="navchica w-full flex flex-wrap z-10 gap-5 py-[5px] bg-[#0F2A3D] justify-center fixed border-b-1 px-5">
         <span
           onClick={() => setIsModalOpen(true)}
           className="text-white font-[500] cursor-pointer hover:text-[#804DFA] w-[130px] text-center "
