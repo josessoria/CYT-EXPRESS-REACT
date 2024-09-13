@@ -41,7 +41,8 @@ Primero, clona el repositorio en tu máquina local:
 
 ```bash
 git clone https://github.com/tu-usuario/nombre-del-repositorio.git
-cd nombre-del-repositorio```
+cd nombre-del-repositorio
+```
 
 ### 2. Ingresa a las carpetas
 Ingresa en la carpetas por separado CytBackend, CytFrontend e instala las dependencias en cada una dellas
