@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import axios from "../../api/axios";
 import { UserContext, UserContextType } from "../../context/UserProvider";
-import { CircularProgress } from "@nextui-org/react";
 import "./AdminMiddleware.scss";
 
 const AdminMiddleware = () => {
